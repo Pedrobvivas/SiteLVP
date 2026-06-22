@@ -23,16 +23,22 @@ h2 {
   font-family: 'Playfair Display', serif;
 }
 
-/* HEADER */
+/* HEADER & NAV */
 header {
   position: fixed;
   width: 100%;
   padding: 25px 8%;
   display: flex;
   justify-content: space-between;
+  align-items: center;
   background: rgba(31,58,77,0.95);
   box-sizing: border-box;
   z-index: 100;
+}
+
+nav {
+  display: flex;
+  align-items: center;
 }
 
 nav a {
@@ -44,6 +50,48 @@ nav a {
 
 nav a:hover {
   color: #C6A86B;
+}
+
+/* DROPDOWN MENU */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: rgba(31,58,77,0.98);
+  min-width: 260px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.3);
+  z-index: 1;
+  border-radius: 8px;
+  top: 100%;
+  left: 30px;
+  overflow: hidden;
+}
+
+.dropdown-content a {
+  color: white;
+  padding: 15px 20px;
+  text-decoration: none;
+  display: block;
+  margin: 0;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+  font-size: 14px;
+}
+
+.dropdown-content a:last-child {
+  border-bottom: none;
+}
+
+.dropdown-content a:hover {
+  background-color: #274C5E;
+  color: #C6A86B;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
 }
 
 /* HERO */
@@ -71,8 +119,8 @@ nav a:hover {
   color: #1F3A4D;
   padding: 14px 25px;
   text-decoration: none;
-  display: inline-block; /* Correção do bug do WhatsApp */
-  margin-top: 15px;      /* Distância dos elementos acima */
+  display: inline-block;
+  margin-top: 15px;
   border-radius: 4px;
   font-weight: 600;
   transition: 0.3s;
@@ -105,23 +153,39 @@ nav a:hover {
 
 /* CARDS DE ATUAÇÃO */
 .destaques {
-  padding: 120px 8% 60px 8%; /* Ajustado o padding inferior */
+  padding: 100px 8% 40px 8%;
   text-align: center;
+}
+
+.destaques h2 {
+  color: #fff;
+  margin-bottom: 10px;
+}
+
+.destaques p.subtitle {
+  color: #C6A86B;
+  margin-bottom: 40px;
 }
 
 .cards {
   display: grid;
   grid-template-columns: repeat(2,1fr);
   gap: 25px;
-  margin-top: 40px;
+}
+
+/* Ajuste para a segunda seção ter menos padding no topo */
+#direito-consumidor {
+  padding-top: 20px;
+  padding-bottom: 80px;
 }
 
 .card {
-  padding: 45px;
+  padding: 40px;
   background: #274C5E;
   border-radius: 12px;
   transition: 0.3s;
   border: 1px solid transparent;
+  text-align: left;
 }
 
 .card:hover {
@@ -131,9 +195,16 @@ nav a:hover {
 
 .card h3 {
   color: #C6A86B;
+  margin-top: 0;
 }
 
-/* INSTITUCIONAL (Cards Flutuantes) */
+.card p {
+  margin-bottom: 0;
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+/* INSTITUCIONAL */
 .institucional {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -161,10 +232,10 @@ nav a:hover {
   margin-bottom: 15px;
 }
 
-/* CTA - CONTATO (Cores harmonizadas) */
+/* CTA - CONTATO */
 .cta {
   padding: 80px 8%;
-  background: #152733; /* Azul mais escuro que o fundo principal */
+  background: #152733;
   color: #fff;
   display: flex;
   justify-content: space-between;
@@ -256,7 +327,10 @@ nav a:hover {
   .institucional {grid-template-columns:1fr;}
   .cta {flex-direction: column; text-align: center; gap:30px;}
   header {flex-direction: column; text-align: center; gap: 15px;}
-  nav a {margin: 0 10px;}
+  nav {flex-direction: column; width: 100%;}
+  nav a {margin: 10px 0;}
+  .dropdown {width: 100%; text-align: center;}
+  .dropdown-content {position: relative; left: 0; top: 0; box-shadow: none; background-color: transparent;}
 }
 
 </style>
@@ -269,7 +343,26 @@ nav a:hover {
   <nav>
     <a href="#">Home</a>
     <a href="#sobre">Sobre Nós</a>
-    <a href="#atuacao">Atuação</a>
+    
+    <div class="dropdown">
+      <a href="#direito-bancario">Direito Bancário ▾</a>
+      <div class="dropdown-content">
+        <a href="#juros-abusivos">Juros Abusivos</a>
+        <a href="#revisao-contrato">Revisão de Contrato Bancário</a>
+        <a href="#busca-apreensao">Busca e Apreensão</a>
+        <a href="#superendividamento">Superendividamento</a>
+      </div>
+    </div>
+
+    <div class="dropdown">
+      <a href="#direito-consumidor">Direito do Consumidor ▾</a>
+      <div class="dropdown-content">
+        <a href="#negativacao-indevida">Negativação Indevida</a>
+        <a href="#cobranca-indevida">Cobrança Indevida</a>
+        <a href="#danos-morais">Danos Morais</a>
+      </div>
+    </div>
+
     <a href="#contato">Contato</a>
   </nav>
 </header>
@@ -278,7 +371,7 @@ nav a:hover {
   <div>
     <h2>Soluções eficazes contra abusos bancários</h2>
     <p>Proteção jurídica e consultiva especializada para consumidores que enfrentam problemas e conflitos com instituições financeiras.</p>
-    <a href="https://wa.me/5527997446265" class="btn">Fale no WhatsApp</a>
+    <a href="https://wa.me/5527997455930" class="btn">Fale no WhatsApp</a>
   </div>
 </section>
 
@@ -295,24 +388,44 @@ nav a:hover {
   </div>
 </section>
 
-<section id="atuacao" class="destaques">
-  <h2>Atuação Especializada</h2>
+<section id="direito-bancario" class="destaques">
+  <h2>Direito Bancário</h2>
+  <p class="subtitle">Defesa e proteção do seu patrimônio contra os abusos dos bancos</p>
   <div class="cards">
-    <div class="card">
-      <h3>Fraudes e Golpes Bancários</h3>
-      <p>Assistência jurídica em casos de fraudes bancárias, empréstimos não reconhecidos e golpes financeiros.</p>
+    <div class="card" id="juros-abusivos">
+      <h3>Juros Abusivos</h3>
+      <p>Análise e combate a taxas de juros excessivas e irregulares aplicadas em empréstimos e financiamentos que encarecem a sua dívida de forma ilegal.</p>
     </div>
-    <div class="card">
-      <h3>Cobranças e Descontos</h3>
-      <p>Ação contra cobranças indevidas e descontos irregulares diretamente em contas correntes ou benefícios.</p>
+    <div class="card" id="revisao-contrato">
+      <h3>Revisão de Contrato Bancário</h3>
+      <p>Avaliamos minuciosamente os seus contratos para identificar e anular cláusulas abusivas, tarifas embutidas e vendas casadas.</p>
     </div>
-    <div class="card">
-      <h3>Revisão de Contratos</h3>
-      <p>Análise abusiva e revisão contratual de cartões de crédito, financiamentos e demais produtos bancários.</p>
+    <div class="card" id="busca-apreensao">
+      <h3>Busca e Apreensão</h3>
+      <p>Defesa especializada em ações de busca e apreensão de veículos, buscando a preservação do seu bem e a renegociação da dívida.</p>
     </div>
-    <div class="card">
+    <div class="card" id="superendividamento">
+      <h3>Superendividamento</h3>
+      <p>Proteção jurídica para renegociação global de dívidas e garantia do seu mínimo existencial, conforme a Lei do Superendividamento.</p>
+    </div>
+  </div>
+</section>
+
+<section id="direito-consumidor" class="destaques">
+  <h2>Direito do Consumidor</h2>
+  <p class="subtitle">Garantia dos seus direitos nas relações de consumo</p>
+  <div class="cards">
+    <div class="card" id="negativacao-indevida">
       <h3>Negativação Indevida</h3>
-      <p>Proteção do seu nome contra restrições indevidas nos órgãos de proteção ao crédito e reparação de danos.</p>
+      <p>Proteção do seu nome contra restrições ilegais (SPC/Serasa) geradas por dívidas pagas, não contraídas ou fraudes, buscando a exclusão e reparação.</p>
+    </div>
+    <div class="card" id="cobranca-indevida">
+      <h3>Cobrança Indevida</h3>
+      <p>Ações contra descontos irregulares em conta corrente ou benefício, e exigência de valores que você não deve, buscando a devolução em dobro.</p>
+    </div>
+    <div class="card" id="danos-morais">
+      <h3>Danos Morais</h3>
+      <p>Reparação financeira por transtornos, humilhações, fraudes bancárias ou falhas na prestação de serviços que afetam a sua honra e tranquilidade.</p>
     </div>
   </div>
 </section>
@@ -341,34 +454,34 @@ nav a:hover {
   </div>
 
   <div style="text-align: center;">
-    <strong>(27) 2222-2222 </strong>
-    <a href="https://wa.me/5527997446265" class="btn">Chamar no WhatsApp</a>
+    <strong>(27) 99745-5930</strong>
+    <a href="https://wa.me/5527997455930" class="btn">Chamar no WhatsApp</a>
   </div>
 </section>
 
 <footer class="footer">
   <div class="footer-grid">
     <div>
-      <h4>Menu</h4>
+      <h4>Navegação</h4>
       <ul>
         <li><a href="#">Home</a></li>
         <li><a href="#sobre">Sobre nós</a></li>
-        <li><a href="#atuacao">Áreas de atuação</a></li>
-        <li><a href="#contato">Contato</a></li>
+        <li><a href="#direito-bancario">Direito Bancário</a></li>
+        <li><a href="#direito-consumidor">Direito do Consumidor</a></li>
       </ul>
     </div>
 
     <div>
       <h4>Contato</h4>
-      <p>Tel: (27) 2222-2222 </p>
+      <p>Tel: (27) 99745-5930</p>
       <p>Email: lvpsolucoes@gmail.com</p>
     </div>
 
     <div>
       <h4>Endereço</h4>
-      <p>Rua Joaquim Lirio</p>
-      <p>Sala 1002</p>
-      <p>Vitória - ES</p>
+      <p>Rua Leocádia Pedra dos Santos, 80</p>
+      <p>Enseada do Suá, Vitória - ES</p>
+      <p>CEP: 29050-370, Brasil</p>
     </div>
   </div>
 
@@ -377,7 +490,7 @@ nav a:hover {
   </div>
 </footer>
 
-<a href="https://wa.me/5527997446265" class="float" title="Fale conosco pelo WhatsApp">💬</a>
+<a href="https://wa.me/5527997455930" class="float" title="Fale conosco pelo WhatsApp">💬</a>
 
 </body>
 </html>
